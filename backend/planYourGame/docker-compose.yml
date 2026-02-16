@@ -14,20 +14,20 @@ services:
       - pgdata:/var/lib/postgresql/data
     restart: unless-stopped
 
-  backend:
-    build: .
-    container_name: planyourgame-backend
-    ports:
-      - "8080:8080"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/planyourgame
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: ""
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
-      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
-    depends_on:
-      - db
-    restart: unless-stopped
+  #  backend:
+  #    build: .
+  #    container_name: planyourgame-backend
+  #    ports:
+  #      - "8080:8080"
+  #    environment:
+  #      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/planyourgame
+  #      SPRING_DATASOURCE_USERNAME: postgres
+  #      SPRING_DATASOURCE_PASSWORD: ""
+  #      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+  #      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
+  #    depends_on:
+  #      - db
+  #    restart: unless-stopped
 
 volumes:
   pgdata:
