@@ -1,6 +1,9 @@
 spring:
+  application:
+    name: PlanYourGame
+
   datasource:
-    url: jdbc:postgresql://localhost:5432/planyourgame
+    url: jdbc:postgresql://localhost:5433/planyourgame
     username: postgres
     password: "25252525@Aa"
     driver-class-name: org.postgresql.Driver
@@ -12,6 +15,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
   sql:
     init:
