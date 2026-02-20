@@ -1,4 +1,4 @@
-package com.pedro.planYourGame
+package com.pedro.planyourgame
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
