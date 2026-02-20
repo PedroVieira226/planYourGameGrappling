@@ -1,31 +1,52 @@
 package com.pedro.planyourgame.model
 
 import jakarta.persistence.*
-import java.io.Serializable
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 
 @Entity
-    @Table(name = "users") // Boa prática para evitar conflito com a palavra reservada 'user' no Postgres
+    @Table(name = "users")
 class User(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    val id: Long? = null,//imutavel
 
     @Column(nullable = false)
-    var name: String = "",
+    val name: String = "",
 
     @Column(nullable = false, unique = true)
-    var email: String = "",
+    val email: String = "",//temporariamente imutavel
 
     @Column(nullable = false)
-    var password: String = "",
+    var encodedPassword: String = "",
 
     @Column(nullable = false, unique = true)
-    var username: String = "",
+    val login: String = "",//temporariamente imutavel
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    var role: Role,
+    var matRole: MatRole = MatRole.STUDENT,
 
-    var profileImage: String?
+    @Enumerated(EnumType.STRING)
+    var systemRole: SystemRole = SystemRole.USER,
 
-) : Serializable
+    var profileImage: String = "",
+
+    ) : UserDetails {
+    override fun getAuthorities(): Collection<GrantedAuthority> {
+        return listOf(SimpleGrantedAuthority("ROLE_${systemRole.name}"))
+    }
+
+    override fun getPassword(): String = encodedPassword
+
+    override fun getUsername(): String = login
+
+    override fun isAccountNonExpired(): Boolean = true
+    override fun isAccountNonLocked(): Boolean = true
+    override fun isCredentialsNonExpired(): Boolean = true
+    override fun isEnabled(): Boolean = true
+    }
+
+
+
+
