@@ -22,7 +22,7 @@ class User(
     var encodedPassword: String = "",
 
     @Column(nullable = false, unique = true)
-    val login: String = "",//temporariamente imutavel
+    var username: String = "",//temporariamente imutavel
 
     @Enumerated(EnumType.STRING)
     var matRole: MatRole = MatRole.STUDENT,
@@ -39,7 +39,7 @@ class User(
 
     override fun getPassword(): String = encodedPassword
 
-    override fun getUsername(): String = login
+    override fun getUsername(): String = username
 
     override fun isAccountNonExpired(): Boolean = true
     override fun isAccountNonLocked(): Boolean = true
