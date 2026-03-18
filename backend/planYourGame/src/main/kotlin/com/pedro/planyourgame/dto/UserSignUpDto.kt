@@ -18,9 +18,7 @@ data class UserSignUpDto(
     @field:Size(min = 6, message = "Password cannot be smaller than 6 characters")
     val encodedPassword: String,
 
-    @field:NotBlank(message = "Username cannot be blank")
-    var username: String,
 
     @field:NotNull(message = "Role cannot be blank")
-    var matRole: MatRole
+    val matRole: MatRole
 )

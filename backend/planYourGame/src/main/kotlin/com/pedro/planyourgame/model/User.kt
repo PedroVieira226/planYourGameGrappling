@@ -18,15 +18,14 @@ class User(
     @Column(nullable = false, unique = true)
     val email: String = "",//temporariamente imutavel
 
-    @Column(nullable = false)
+    @Column(name = "password", nullable = false)
     var encodedPassword: String = "",
 
-    @Column(nullable = false, unique = true)
-    var username: String = "",//temporariamente imutavel
-
+    @Column(name = "mat_role", nullable = false, unique = true)
     @Enumerated(EnumType.STRING)
     var matRole: MatRole = MatRole.STUDENT,
 
+    @Column(name = "system_role", nullable = false)
     @Enumerated(EnumType.STRING)
     var systemRole: SystemRole = SystemRole.USER,
 
@@ -38,9 +37,7 @@ class User(
     }
 
     override fun getPassword(): String = encodedPassword
-
-    override fun getUsername(): String = username
-
+    override fun getUsername(): String = email
     override fun isAccountNonExpired(): Boolean = true
     override fun isAccountNonLocked(): Boolean = true
     override fun isCredentialsNonExpired(): Boolean = true

@@ -10,17 +10,14 @@ import java.util.Optional
 @Repository
 @Transactional(readOnly = true)
 interface UserRepository : JpaRepository<User, Long> {
-    fun findByEmail(email: String): Optional<User>
 
-    fun findByLogin(login: String): Optional<User>
+    fun findByEmail(email: String): Optional<User>
 
     fun findByName(name: String): List<User>
 
     fun findBySystemRole(systemRole: SystemRole): List<User>
 
     fun existsByEmail(email: String): Boolean
-
-    fun existsByLogin(login: String): Boolean
 
     fun existsByName(name: String): Boolean
 
